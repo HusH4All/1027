@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit nadador</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css" href="/css/natacio.css"
+          th:href="@{/css/natacio.css}"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+</head>
+<body>
+<h2>Edit nadador</h2>
+<form action="#" th:action="@{/nadador/update}"
+      th:object="${nadador}" method="post">
+    <table>
+        <tr>
+            <td><label>Nom</label></td>
+            <td><input type="text" th:field="*{nom}" readonly="readonly" /></td>
+        </tr>
+        <tr>
+            <td><label>Num. Federat</label></td>
+            <td><input type="text" th:field="*{numFederat}" maxlength="10" /></td>
+        </tr>
+        <tr>
+            <td><label>Pais</label></td>
+            <td><input type="text" th:field="*{pais}"  maxlength="20"/></td>
+        </tr>
+        <tr>
+            <td><label>Edat</label></td>
+            <td><input type="number" th:field="*{edat}" /></td>
+        </tr>
+        <tr>
+            <td><label>Genere</label></td>
+            <td> <select class="form_control" type="text" th:field="*{genere}">
+                <!--option value="No seleccionat">Selecciona el gènere</option-->
+                <option th:each="gendervalue : ${genderList}"
+                        th:value="${gendervalue}"
+                        th:text="${gendervalue}"></option>
+            </select>
+            </td>
+            <td th:if="${#fields.hasErrors('genere')}" th:errors="*{genere}"></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="Afegeix nadador" /></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
