@@ -28,7 +28,7 @@
         <td th:text="${nadador.nom}"
             th:class="${#strings.equals(nadador.genere, 'Femení')} ?
                 font-weight-bold : font-italic"></td>
-        <td th:text="${nadador.pais}"></td>
+        <td><a class="btn btn-primary" th:text="${nadador.pais}" th:href="@{/classificacio/perprova/{pais}(pais=${nadador.pais})}"></a></td>
         <td th:text="${nadador.edat}"></td>
         <td th:text="${nadador.genere}"></td>
         <td><a class="btn btn-warning" th:href="@{/nadador/update/{nom}(nom=${nadador.nom})}">Edita</a>
