@@ -23,6 +23,7 @@
         <td th:text="${prova.descripcio}"></td>
         <td th:text="${prova.tipus}"></td>
         <td th:text="${#temporals.format(prova.data,'dd/MM/yyyy')}"></td>
+        <td><a th:href="@{/classificacio/addPerProva/{nom}(nom=${prova.nom})}">Gestionar classificacions</a></td>
         <td>
             <a class="btn btn-primary" th:href="@{/classificacio/perpais/{nom}(nom=${prova.nom})}">Per país</a>
         </td>

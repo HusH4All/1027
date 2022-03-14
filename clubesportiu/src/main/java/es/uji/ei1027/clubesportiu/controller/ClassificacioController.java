@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.util.UriUtils;
 
 @Controller
 @RequestMapping("/classificacio")
@@ -99,4 +100,32 @@ public class ClassificacioController {
         model.addAttribute("pais", pais);
         return "classificacio/perprova";
     }
+
+    @RequestMapping(value="/addPerProva/{nom}")
+    public String addClassifPerProva(Model model,
+                                     @PathVariable String nom) {
+        Classificacio classificacio = new Classificacio();
+        classificacio.setNomProva(nom);
+        model.addAttribute("novaclassificacio", classificacio);
+        model.addAttribute("classificacions",
+                classificacioDao.getClassificacioProva(nom));
+        model.addAttribute("nadadors",
+                classificacioService.getNadadorsElegiblesPerProva(nom));
+        return "classificacio/addPerProva";
+    }
+
+    @RequestMapping(value="/addPerProva", method=RequestMethod.POST)
+    public String processAddSubmitPerProva(
+            @ModelAttribute("classificacio") Classificacio classificacio,
+            BindingResult bindingResult) {
+        // Here we should include the validation
+        // ...
+        if (bindingResult.hasErrors())
+            return "classificacio/addPerProva";
+        classificacioDao.addClassificacio(classificacio);
+        String nameUri="redirect:addPerProva/" + classificacio.getNomProva();
+        nameUri = UriUtils.encodePath(nameUri, "UTF-8");
+        return nameUri;
+    }
+
 }

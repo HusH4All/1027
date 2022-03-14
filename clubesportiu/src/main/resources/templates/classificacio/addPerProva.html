@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Gestionar classificacions d’una prova</title>
+    <meta charset="UTF-8" />
+    <link rel ="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
+</head>
+<body>
+<h1 th:text="'Classificacions de '+${novaclassificacio.nomProva}"></h1>
+<table>
+    <thead>
+    <tr>
+        <th>Posició</th>
+        <th>Nom</th>
+        <th>Temps</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="classificacio: ${classificacions}">
+        <td th:text="${classificacio.posicio}"></td>
+        <td th:text="${classificacio.nomNadador}"></td>
+        <td th:text="${{classificacio.temps}}"></td>
+        <td><a th:href="@{/classificacio/update/{nom}/{nomProva}(nom=${classificacio.nomNadador},nomProva=${classificacio.nomProva})}">Editar</a>
+        </td>
+        <td><a th:href="@{/classificacio/delete/{nom}/{nomProva}(nom=${classificacio.nomNadador},nomProva=${classificacio.nomProva})}">Borrar</a>
+        </td>
+    </tr>
+    <tr>
+        <form action="#" th:action="@{/classificacio/addPerProva}"
+              th:object="${novaclassificacio}" method="post">
+            <td><input type="number" id="position" th:field="*{posicio}" />
+            </td>
+            <td><select id ="nomNadador" th:field ="*{nomNadador}">
+                <option th:each="nom:${nadadors}"
+                        th:value="${nom}"
+                        th:text="${nom}"> </option>
+            </select>
+            </td>
+            <td><input type="text" id="temps" th:field="*{temps}"/>
+            </td>
+            <td><button type="submit" class="btn btn-primary">Afegir</button>
+            </td>
+            <td><input type="text" hidden="hidden" id="nomProva" th:field="*{nomProva}" />
+            </td>
+        </form>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
