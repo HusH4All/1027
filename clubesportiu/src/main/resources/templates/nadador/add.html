@@ -27,8 +27,7 @@
         </tr>
         <tr>
             <td><label>Edat</label></td>
-            <td><input type="text" th:field="*{edat}"
-                       th:class="${#fields.hasErrors('edat')} ? needcorrection"/></td>
+            <td><input type="text" th:field="*{edat}" th:class="${#fields.hasErrors('edat')} ? needcorrection"/></td>
             <td th:if="${#fields.hasErrors('edat')}" th:errors="*{edat}" class="error"/>
         </tr>
         <tr>

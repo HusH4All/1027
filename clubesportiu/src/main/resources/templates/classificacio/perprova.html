@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Classificacions per país</title>
+    <title>Classificacions per prova</title>
     <meta charset="UTF-8" />
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
 </head>
 <body>
-<h1 th:text="${nom}"></h1>
-<h2>Nadadors per Pais</h2>
+<h1 th:text="${pais}"></h1>
+<h2>Nadadors per Prova</h2>
 
-<div th:each="pais: ${classificacions.keySet()}">
-    <h4 th:text="${pais}"></h4>
+<div th:each="prova: ${classificacions.keySet()}">
+    <h4 th:text="${prova}"></h4>
     <ul>
-        <li th:each="nadador: ${classificacions.get(pais)}">
+        <li th:each="nadador: ${classificacions.get(prova)}">
             <span th:text="${nadador.nom}"></span>
         </li>
     </ul>

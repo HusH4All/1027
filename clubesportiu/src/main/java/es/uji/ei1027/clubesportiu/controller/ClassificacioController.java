@@ -70,10 +70,10 @@ public class ClassificacioController {
         classificacioDao.updateClassificacio(classificacio);
         return "redirect:list";
     }
-    @RequestMapping(value = "/delete/{nom}/{nProva}")
+    @RequestMapping(value = "/delete/{nom}/{nomProva}")
     public String processDeleteClassif(@PathVariable String nom,
-                                       @PathVariable String nProva) {
-        classificacioDao.deleteClassificacio(nom, nProva);
+                                       @PathVariable String nomProva) {
+        classificacioDao.deleteClassificacio(nom, nomProva);
         return "redirect:../../list";
     }
 
@@ -84,11 +84,19 @@ public class ClassificacioController {
         this.classificacioService = classificacioService;
     }
 
-    @RequestMapping("/perpais")
-    public String listClsfPerPais(Model model) {
+    @RequestMapping("/perpais/{nom}")
+    public String listClsfPerPais(Model model, @PathVariable String nom) {
         model.addAttribute("classificacions",
-                classificacioService.getClassificationByCountry("Duos Sincro"));
+                classificacioService.getClassificationByCountry(nom));
+        model.addAttribute("nom", nom);
         return "classificacio/perpais";
     }
 
+    @RequestMapping("/perprova/{pais}")
+    public String listClsfPerProva(Model model, @PathVariable String pais) {
+        model.addAttribute("classificacions",
+                classificacioService.getNadadorsPerProva(pais));
+        model.addAttribute("pais", pais);
+        return "classificacio/perprova";
+    }
 }
