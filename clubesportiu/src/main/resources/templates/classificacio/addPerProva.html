@@ -8,7 +8,7 @@
 </head>
 <body>
 <h1 th:text="'Classificacions de '+${novaclassificacio.nomProva}"></h1>
-<table>
+<table class="table table-striped">
     <thead>
     <tr>
         <th>Posició</th>
@@ -19,7 +19,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="classificacio: ${classificacions}">
+    <tr th:each="classificacio: ${#lists.sort(classificacions, metodecomparador)}">
         <td th:text="${classificacio.posicio}"></td>
         <td th:text="${classificacio.nomNadador}"></td>
         <td th:text="${{classificacio.temps}}"></td>

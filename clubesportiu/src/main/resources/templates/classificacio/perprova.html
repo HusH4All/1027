@@ -9,8 +9,10 @@
 <body>
 <h1 th:text="${pais}"></h1>
 <h2>Nadadors per Prova</h2>
-
-<div th:each="prova: ${classificacions.keySet()}">
+<div th:if="${#lists.isEmpty(classificacions)}">
+    No hi ha nadadors en la base de dades
+</div>
+<div th:each="prova: ${classificacions.keySet()}" th:unless="${#lists.isEmpty(classificacions)}">
     <h4 th:text="${prova}"></h4>
     <ul>
         <li th:each="nadador: ${classificacions.get(prova)}">
