@@ -14,31 +14,48 @@
     <h2>Edita prova</h2>
     <form action="#" th:action ="@{/prova/update}"
           th:object="${prova}" method ="post">
-        <table>
-            <tr>
-                <td> <label>Nom</label> </td>
-                <td> <input type="text" readonly="readonly" th:field="*{nom}" /> </td>
-            </tr>
-            <tr>
-                <td> <label>Descripció</label> </td>
-                <td> <input type="text" th:field ="*{descripcio}" /> </td>
-            </tr>
-            <tr>
-                <td> <label>Tipus</label> </td>
-                <td> <span th:each ="tip: ${typeList}">
-                       <input type ="radio" th:field ="*{tipus}" th:value ="${tip}" />
-                       <label th:for="${#ids.prev('tipus')}" th:text ="${tip}" />
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td> <label>Date</label> </td>
-                <td> <input type ="text" th:field ="*{data}"/> </td>
-            </tr>
-            <tr>
-                <td colspan ="2"> <input type ="submit" value ="Modifica Prova"/> </td>
-            </tr>
-        </table>
+        <div class="form-group row">
+            <label class="control-label col-sm-1" for="nomProva">Nom:</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="nomProva" th:field="*{nom}" style="width : 217px"/>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="control-label col-sm-1" for="descripcio">Descripció:</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="descripcio" th:field="*{descripcio}" style="width : 217px"/>
+            </div>
+        </div>
+
+        <fieldset class="form-group row" id="group">
+            <label class="control-label col-sm-1">Tipus:</label>
+            <div class="col-sm-1">
+                <label class="form-check-label" for="tipus1">Individual</label>
+                <div class="col-sm-1">
+                    <input type="radio" th:field ="*{tipus}" value="Individual" id="tipus1" name="group"/>
+                </div>
+            </div>
+            <div class="col-sm-1">
+                <label class="form-check-label" for="tipus1">Grupal</label>
+                <div class="col-sm-1">
+                    <input type="radio" th:field ="*{tipus}" value="Grupal" id="tipus2" name="group"/>
+                </div>
+            </div>
+        </fieldset>
+
+        <div class="form-group row">
+            <label class="control-label col-sm-1" for="data">Data:</label>
+            <div class="col-sm-4">
+                <input type="date" class="form-control" id="data" th:field="*{data}" style="width : 217px"/>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-offset-2 col-sm-4">
+                <button type="submit" class="btn btn-primary">Modifica prova</button>
+            </div>
+        </div>
     </form>
 </div>
 </body>
