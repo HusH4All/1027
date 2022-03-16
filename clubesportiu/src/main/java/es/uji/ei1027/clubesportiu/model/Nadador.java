@@ -61,6 +61,7 @@ public class Nadador implements Comparable<Nadador>{
                 "}";
     }
 
+    @Override
     public int compareTo(Nadador altre) {
         return this.getNom().compareTo(altre.getNom());
     }

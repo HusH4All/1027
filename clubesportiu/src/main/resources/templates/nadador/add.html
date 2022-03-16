@@ -14,40 +14,56 @@
 <h2>Nou nadador</h2>
 <form action="#" th:action="@{/nadador/add}"
       th:object="${nadador}" method="post">
-    <table>
-        <tr>
-            <td><label>Nom</label></td>
-            <td><input type="text" th:field="*{nom}" placeholder="Nom i cognoms" maxlength="50" /></td>
-            <td th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}" class="error"/>
-        </tr>
-        <tr>
-            <td><label>Num. Federat</label></td>
-            <td><input type="text" th:field="*{numFederat}" maxlength="10" /></td>
-        </tr>
-        <tr>
-            <td><label>Pais</label></td>
-            <td><input type="text" th:field="*{pais}" maxlength="20"/></td>
-        </tr>
-        <tr>
-            <td><label>Edat</label></td>
-            <td><input type="text" th:field="*{edat}" th:class="${#fields.hasErrors('edat')} ? needcorrection"/></td>
-            <td th:if="${#fields.hasErrors('edat')}" th:errors="*{edat}" class="error"/>
-        </tr>
-        <tr>
-            <td><label>Gènere</label></td>
-            <td><select class="form_control" type="text" th:field="*{genere}">
-                <option value="No seleccionat">Selecciona el gènere</option>
-                <option value="Femeni">Femeni</option>
-                <option value="Masculi">Masculi</option>
-                <option value="Altre">Altre</option>
-            </select>
-            </td>
-            <td th:if="${#fields.hasErrors('genere')}" th:errors="*{genere}" class="error"></td>
-        </tr>
-        <tr>
-            <td colspan="2"><input type="submit" value="Afegeix nadador" /></td>
-        </tr>
-    </table>
+
+    <div class="form-group row">
+        <label class="control-label col-sm-1" for="nomNadador">Nom:</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" id="nomNadador" placeholder="Nom i cognoms" maxlength="50" th:field="*{nom}" style="width : 217px" />
+            <div th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}" class="text-danger"></div>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="control-label col-sm-1" for="nFede">N. Federat:</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" id="nFede" maxlength="10" th:field="*{numFederat}" style="width : 217px"/>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="control-label col-sm-1" for="Pais">Pais:</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" id="Pais" maxlength="20" th:field="*{pais}" style="width : 217px"/>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="control-label col-sm-1" for="edat">Edat:</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" id="edat" maxlength="20" th:field="*{edat}" style="width : 217px"/>
+            <div th:if="${#fields.hasErrors('edat')}" th:errors="*{edat}" class="text-danger"></div>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="exampleSelect1" class="form-label col-sm-1">Gènere:</label>
+        <div class="col-sm-4">
+        <select class="form-select" id="exampleSelect1" type="text" th:field="*{genere}" style="width : 217px">
+            <option value="No seleccionat">Selecciona el gènere</option>
+            <option value="Femeni">Femeni</option>
+            <option value="Masculi">Masculi</option>
+            <option value="Altre">Altre</option>
+        </select>
+            <div th:if="${#fields.hasErrors('genere')}" th:errors="*{genere}" class="text-danger"></div>
+        </div>
+
+    </div>
+
+    <div class="form-group row">
+        <div class="col-sm-offset-2 col-sm-4">
+            <button type="submit" class="btn btn-primary">Afegeix nadador</button>
+        </div>
+    </div>
 </form>
 </div>
 </body>
