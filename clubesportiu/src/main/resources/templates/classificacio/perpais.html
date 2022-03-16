@@ -1,14 +1,19 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}">
 <head>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"
+          th:href="@{/css/bootstrap.min.css}"/>
     <title>Classificacions per país</title>
     <meta charset="UTF-8" />
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
 </head>
 <body>
-<h1 th:text="${nom}"></h1>
-<h2>Nadadors per Pais</h2>
+<div layout:fragment="content">
+<h2 th:text="${nom}"></h2>
+<h3>Nadadors per Pais</h3>
 
 <div th:each="pais: ${classificacions.keySet()}">
     <h4 th:text="${pais}"></h4>
@@ -17,6 +22,7 @@
             <span th:text="${nadador.nom}"></span>
         </li>
     </ul>
+</div>
 </div>
 </body>
 </html>

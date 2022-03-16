@@ -1,13 +1,18 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}">
 <head>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"
+          th:href="@{/css/bootstrap.min.css}"/>
     <title>Gestionar Provas</title>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
 </head>
 <body>
-<h1>Llista de Provas</h1>
-<table class="table table-striped">
+<div layout:fragment="content">
+<h2>Llista de Provas</h2>
+<table class="table table-hover">
     <thead>
     <tr>
         <th scope="col">Nom</th>
@@ -18,7 +23,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="prova: ${proves}">
+    <tr th:each="prova: ${proves}" class="table-active">
         <td th:text="${prova.nom}"></td>
         <td th:text="${prova.descripcio}"></td>
         <td th:text="${prova.tipus}"></td>
@@ -37,5 +42,6 @@
     </tbody>
 </table>
 <a class="btn btn-success" href="add">Afegeix prova</a>
+</div>
 </body>
 </html>

@@ -1,13 +1,16 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}">
 <head>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"
+          th:href="@{/css/bootstrap.min.css}"/>
     <title>Crear nou Nadador</title>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" type="text/css" href="/css/natacio.css"
-          th:href="@{/css/natacio.css}"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
 </head>
 <body>
+<div layout:fragment="content">
 <h2>Nou nadador</h2>
 <form action="#" th:action="@{/nadador/add}"
       th:object="${nadador}" method="post">
@@ -46,5 +49,6 @@
         </tr>
     </table>
 </form>
+</div>
 </body>
 </html>

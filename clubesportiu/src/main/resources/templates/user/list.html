@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{fragments/base}">
+<head>
+    <title>Llista d'usuaris del sistema</title>
+    <meta charset="UTF-8"/>
+    <!-- Afegim una fulla d'estil (Bootstrap) -->
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"
+          th:href="@{/css/bootstrap.min.css}"/>
+</head>
+
+<body>
+<div layout:fragment="content" >
+    <h2>Llista d'usuaris del sistema</h2>
+    <div th:if="${#lists.isEmpty(users)}">
+        No hi ha usuaris
+    </div>
+    <table th:unless="${#lists.isEmpty(users)}"  class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">Nom d'usuari</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="user: ${users}" class="table-active">
+            <td th:text="${user.username}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <a href="/" class="btn btn-primary" role="button">Tornar</a>
+</div>
+</body>
+</html>

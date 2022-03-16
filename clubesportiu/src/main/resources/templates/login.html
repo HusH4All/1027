@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}">
+<head>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"
+          th:href="@{/css/bootstrap.min.css}"/>
+    <title>Login</title>
+    <meta charset="UTF-8"/>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+
+</head>
+<body>
+<div layout:fragment="content">
+    <h2>Accés</h2>
+
+    <form action="#" th:action="@{/login}"
+          th:object="${user}" method="post">
+        <div class="form-group">
+            <label for="exampleInputEmail1" class="form-label mt-4">Nom d'usuari</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Introduïu el nom d'usuari" style="width : 217px" th:field="*{username}">
+            <div class="text-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1" class="form-label mt-4">Contrasenya</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contrasenya" style="width : 217px" th:field="*{password}">
+            <div class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+        </div>
+        <input type="submit" class="btn btn-primary" value="Accedir" />
+    </form>
+</div>
+</body>
+</html>

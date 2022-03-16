@@ -1,25 +1,28 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}">
 <head>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"
+          th:href="@{/css/bootstrap.min.css}"/>
     <title>Gestionar classificacions d’una prova</title>
     <meta charset="UTF-8" />
     <link rel ="stylesheet"
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
 </head>
 <body>
-<h1 th:text="'Classificacions de '+${novaclassificacio.nomProva}"></h1>
-<table class="table table-striped">
+<div layout:fragment="content">
+<h2 th:text="'Classificacions de '+${novaclassificacio.nomProva}"></h2>
+<table class="table table-hover">
     <thead>
     <tr>
         <th>Posició</th>
         <th>Nom</th>
         <th>Temps</th>
-        <th></th>
-        <th></th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="classificacio: ${#lists.sort(classificacions, metodecomparador)}">
+    <tr th:each="classificacio: ${#lists.sort(classificacions, metodecomparador)}" class="table-active">
         <td th:text="${classificacio.posicio}"></td>
         <td th:text="${classificacio.nomNadador}"></td>
         <td th:text="${{classificacio.temps}}"></td>
@@ -28,7 +31,7 @@
         <td><a th:href="@{/classificacio/delete/{nom}/{nomProva}(nom=${classificacio.nomNadador},nomProva=${classificacio.nomProva})}">Borrar</a>
         </td>
     </tr>
-    <tr>
+    <tr class="table-active">
         <form action="#" th:action="@{/classificacio/addPerProva}"
               th:object="${novaclassificacio}" method="post">
             <td><input type="number" id="position" th:field="*{posicio}" />
@@ -49,5 +52,6 @@
     </tr>
     </tbody>
 </table>
+</div>
 </body>
 </html>

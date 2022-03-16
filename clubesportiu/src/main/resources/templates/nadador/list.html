@@ -1,18 +1,21 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}">
 <head>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"
+          th:href="@{/css/bootstrap.min.css}"/>
     <title>Gestionar Nadadors</title>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" type="text/css" href="/css/natacio.css"
-          th:href="@{/css/natacio.css}"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
 </head>
 <body>
-<h1>Llista de Nadadors</h1>
+<div layout:fragment="content">
+<h2>Llista de Nadadors</h2>
 <div th:if="${#lists.isEmpty(nadadors)}">
     No hi ha nadadors en la base de dades
 </div>
-<table th:unless="${#lists.isEmpty(nadadors)}" class="table table-striped">
+<table th:unless="${#lists.isEmpty(nadadors)}" class="table table-hover">
     <thead>
     <tr>
         <th scope="col">Num. Federat</th>
@@ -23,7 +26,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="nadador: ${#lists.sort(nadadors, metodecomparador)}">
+    <tr th:each="nadador: ${#lists.sort(nadadors, metodecomparador)}" class="table-active">
         <td th:text="${nadador.numFederat}"></td>
         <td th:text="${nadador.nom}"
             th:class="${#strings.equals(nadador.genere, 'Femení')} ?
@@ -39,5 +42,6 @@
     </tbody>
 </table>
 <a class="btn btn-success" href="add">Afegeix nadador</a>
+</div>
 </body>
 </html>

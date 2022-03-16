@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}">
+<head>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"
+          th:href="@{/css/bootstrap.min.css}"/>
+    <meta charset="UTF-8" />
+    <title>EI1027</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+</head>
+<body>
+<div layout:fragment="content" >
+<h2 class="center">Gestió del Club Esportiu</h2>
+<ul class="btn-group-vertical">
+    <a href="nadador/list" class="btn btn-lg btn-primary" role="button">Gestió de Nadadors</a>
+    <a href="prova/list" class="btn btn-lg btn-primary" role="button">Gestió de Provas</a>
+    <a href="classificacio/list" class="btn btn-lg btn-primary" role="button">Gestió de Classificacions</a>
+    <a href="user/list" class="btn btn-lg btn-primary" role="button">Gestió de Users</a>
+</ul>
+</div>
+</body>
+</html>

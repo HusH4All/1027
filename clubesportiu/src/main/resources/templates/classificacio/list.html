@@ -1,15 +1,19 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}">
 <head>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"
+          th:href="@{/css/bootstrap.min.css}"/>
     <title>Gestionar classificacions</title>
     <meta charset="UTF-8" />
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
 </head>
 <body>
-<div class="container">
-    <h1>Llista de Classificacions</h1>
-    <table class="table table-striped">
+<div layout:fragment="content">
+    <h2>Llista de Classificacions</h2>
+    <table class="table table-hover">
         <thead>
         <tr>
             <th>Nom Nadador</th>
@@ -19,7 +23,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="classificacio: ${classificacions}">
+        <tr th:each="classificacio: ${classificacions}" class="table-active">
             <td th:text="${classificacio.nomNadador}"></td>
             <td th:text="${classificacio.nomProva}"></td>
             <td th:text="${classificacio.posicio}"></td>
